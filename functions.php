@@ -240,6 +240,7 @@ require get_template_directory() . '/inc/customizer.php';
  */
 require get_template_directory() . '/inc/class-hgash-menu-walker.php';
 require get_template_directory() . '/inc/class-hgash-actions.php';
+require get_template_directory() . '/inc/class-custom-post-types.php';
 
 /**
  * Load ACF Options panel.

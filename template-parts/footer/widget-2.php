@@ -35,7 +35,7 @@ if ( ! $widget ) {
 
 					printf(
 						'<li>
-							<a href="#!">Life insurance</a>
+							<a href="%s">%s</a>
 						</li>',
 						esc_url( $links['url'] ),
 						esc_html( $links['title'] )

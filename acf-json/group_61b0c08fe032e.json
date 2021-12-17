@@ -875,6 +875,25 @@
                                     "maxlength": ""
                                 },
                                 {
+                                    "key": "field_61ba0cafdd54e",
+                                    "label": "Service Link",
+                                    "name": "service_link",
+                                    "type": "page_link",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "post_type": "",
+                                    "taxonomy": "",
+                                    "allow_null": 0,
+                                    "allow_archives": 1,
+                                    "multiple": 0
+                                },
+                                {
                                     "key": "field_61b1ba8e306a1",
                                     "label": "Service Content",
                                     "name": "service_content",
@@ -982,6 +1001,30 @@
                                     "maxlength": ""
                                 },
                                 {
+                                    "key": "field_61ba0e3fdd550",
+                                    "label": "Hover Image",
+                                    "name": "service_l2_hover_image",
+                                    "type": "image",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "return_format": "id",
+                                    "preview_size": "medium",
+                                    "library": "all",
+                                    "min_width": "",
+                                    "min_height": "",
+                                    "min_size": "",
+                                    "max_width": "",
+                                    "max_height": "",
+                                    "max_size": "",
+                                    "mime_types": ""
+                                },
+                                {
                                     "key": "field_61ba030271f80",
                                     "label": "Title",
                                     "name": "service_l2_title",
@@ -999,6 +1042,25 @@
                                     "prepend": "",
                                     "append": "",
                                     "maxlength": ""
+                                },
+                                {
+                                    "key": "field_61ba0d51dd54f",
+                                    "label": "Link",
+                                    "name": "service_l2_link",
+                                    "type": "page_link",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "post_type": "",
+                                    "taxonomy": "",
+                                    "allow_null": 0,
+                                    "allow_archives": 1,
+                                    "multiple": 0
                                 },
                                 {
                                     "key": "field_61ba030271f81",
@@ -2531,6 +2593,11 @@
                 "param": "post_type",
                 "operator": "==",
                 "value": "page"
+            },
+            {
+                "param": "page_template",
+                "operator": "!=",
+                "value": "services-details.php"
             }
         ]
     ],
@@ -2543,5 +2610,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1639580525
+    "modified": 1639643820
 }

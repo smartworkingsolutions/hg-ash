@@ -33,7 +33,7 @@
 		</div>
 
 		<?php
-		// Check Process lists exists.
+		// Check lists exists.
 		if ( have_rows( 'services_lists' ) ) :
 
 			echo '<div class="row mt-n1-9">';
@@ -45,11 +45,12 @@
 				// Load sub field value.
 				$icon          = get_sub_field( 'service_icon' );
 				$service_title = get_sub_field( 'service_title' );
+				$service_link  = get_sub_field( 'service_link' );
 				$content       = get_sub_field( 'service_content' );
 
 				printf(
 					'<div class="col-md-6 col-lg-4 col-xl-3 mt-1-9 wow fadeIn" data-wow-delay="200ms">
-						<a href="service-details.html" class="card card-style2 border-0 h-100">
+						<a href="%s" class="card card-style2 border-0 h-100">
 							<div class="card-body px-1-9 py-5 py-sm-6 text-center">
 								<i class="%s display-10 mb-4 d-block"></i>
 								<h3 class="h5 mb-3">%s</h3>
@@ -57,6 +58,7 @@
 							</div>
 						</a>
 					</div>',
+					esc_url( $service_link ),
 					esc_html( $icon ),
 					esc_html( $service_title ),
 					esc_html( $content )

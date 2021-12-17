@@ -13,19 +13,13 @@
 
 			<?php
 			if ( get_sub_field( 'services_small_heading' ) || get_sub_field( 'services_heading' ) ) {
-				echo '<div class="col-lg-5 mb-3 mb-lg-0">';
+				echo '<div class="text-center mb-2-9 mb-lg-6 wow fadeIn" data-wow-delay="100ms">';
 				if ( get_sub_field( 'services_small_heading' ) ) {
-					echo '<span class="d-block mb-2 text-secondary text-uppercase fw-bold">' . esc_html( get_sub_field( 'services_small_heading' ) ) . '</span>';
+					echo '<span class="text-secondary mb-2 d-block fw-bold text-uppercase">' . esc_html( get_sub_field( 'services_small_heading' ) ) . '</span>';
 				}
 				if ( get_sub_field( 'services_heading' ) ) {
-					echo '<h2 class="mb-0">' . esc_html( get_sub_field( 'services_heading' ) ) . '</h2>';
+					echo '<h2 class="mb-0 h1">' . esc_html( get_sub_field( 'services_heading' ) ) . '</h2>';
 				}
-				echo '</div>';
-			}
-
-			if ( get_sub_field( 'services_content' ) ) {
-				echo '<div class="col-lg-7">';
-					echo '<p class="mb-0 border-lg-start border-width-4 border-secondary-color py-lg-4 ps-lg-6">' . esc_html( get_sub_field( 'services_content' ) ) . '</p>';
 				echo '</div>';
 			}
 			?>
@@ -33,31 +27,47 @@
 		</div>
 
 		<?php
-		// Check Process lists exists.
-		if ( have_rows( 'services_lists' ) ) :
+		// Check lists exists.
+		if ( have_rows( 'services_l2_lists' ) ) :
 
-			echo '<div class="row mt-n1-9">';
+			echo '<div class="row mt-n1-6">';
 
 			// Loop through rows.
-			while ( have_rows( 'services_lists' ) ) :
+			while ( have_rows( 'services_l2_lists' ) ) :
 				the_row();
 
 				// Load sub field value.
-				$icon          = get_sub_field( 'service_icon' );
-				$service_title = get_sub_field( 'service_title' );
-				$content       = get_sub_field( 'service_content' );
+				$image_html    = '';
+				$icon          = get_sub_field( 'service_l2_icon' );
+				$hover_image   = df_resize( get_sub_field( 'service_l2_hover_image' ), '', 551, 537, true, true );
+				$service_title = get_sub_field( 'service_l2_title' );
+				$service_link  = get_sub_field( 'service_l2_link' );
+				$content       = get_sub_field( 'service_l2_content' );
+
+				if ( $hover_image ) {
+					$image_html = sprintf(
+						'<div class="hover-bg"><img src="%s" alt="%s"></div>',
+						esc_url( $hover_image['url'] ),
+						esc_html( $service_title )
+					);
+				}
 
 				printf(
-					'<div class="col-md-6 col-lg-4 col-xl-3 mt-1-9 wow fadeIn" data-wow-delay="200ms">
-						<a href="service-details.html" class="card card-style2 border-0 h-100">
-							<div class="card-body px-1-9 py-5 py-sm-6 text-center">
-								<i class="%s display-10 mb-4 d-block"></i>
-								<h3 class="h5 mb-3">%s</h3>
-								<p class="mb-0">%s</p>
+					'<div class="col-md-6 col-lg-4 mt-1-6 wow fadeIn" data-wow-delay="200ms">
+						<div class="card card-style1 border-color-light-black h-100">
+							<div class="card-body text-center px-4 px-xl-5 py-5 py-md-6">
+								%s
+								<div class="service-icon text-center display-20">
+									<i class="%s display-25 display-sm-22 display-lg-20 position-relative"></i>
+								</div>
+								<h3 class="h5 mb-3 mt-2 position-relative"><a href="%s">%s</a></h3>
+								<p class="mb-0 position-relative">%s</p>
 							</div>
-						</a>
+						</div>
 					</div>',
+					wp_kses_post( $image_html ),
 					esc_html( $icon ),
+					esc_html( $service_link ),
 					esc_html( $service_title ),
 					esc_html( $content )
 				);
@@ -70,5 +80,4 @@
 		?>
 
 	</div>
-	<img src="<?php echo get_template_directory_uri() . '/img/content/dots1.png'; //phpcs:ignore ?>" class="position-absolute bottom-n40 right d-none d-lg-block wow fadeIn ani-left-right" data-wow-delay="200ms" alt="...">
 </section>

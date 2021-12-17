@@ -119,7 +119,7 @@ $count = 1;
 						$count_row = count( get_sub_field( 'contact_lists' ) );
 					}
 
-					// Check Process lists exists.
+					// Check lists exists.
 					if ( have_rows( 'contact_lists' ) ) :
 
 						// Loop through rows.
