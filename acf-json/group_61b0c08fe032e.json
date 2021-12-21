@@ -1905,6 +1905,94 @@
                     "min": "",
                     "max": ""
                 },
+                "layout_61bca906b823c": {
+                    "key": "layout_61bca906b823c",
+                    "name": "testimonials_layout3",
+                    "label": "Testimonials Layout3",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_61bca95eb823d",
+                            "label": "Testimonials",
+                            "name": "testimonials_l3",
+                            "type": "repeater",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "collapsed": "",
+                            "min": 0,
+                            "max": 0,
+                            "layout": "table",
+                            "button_label": "Add Testimonial",
+                            "sub_fields": [
+                                {
+                                    "key": "field_61bcaa86b823e",
+                                    "label": "Testimonial",
+                                    "name": "testimonial_l3_text",
+                                    "type": "textarea",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "default_value": "",
+                                    "placeholder": "",
+                                    "maxlength": "",
+                                    "rows": "",
+                                    "new_lines": ""
+                                },
+                                {
+                                    "key": "field_61bcab55b823f",
+                                    "label": "Name",
+                                    "name": "testimonial_l3_name",
+                                    "type": "text",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "default_value": "",
+                                    "placeholder": "",
+                                    "prepend": "",
+                                    "append": "",
+                                    "maxlength": ""
+                                },
+                                {
+                                    "key": "field_61bcab6db8240",
+                                    "label": "Job Title",
+                                    "name": "testimonial_l3_job",
+                                    "type": "text",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "default_value": "",
+                                    "placeholder": "",
+                                    "prepend": "",
+                                    "append": "",
+                                    "maxlength": ""
+                                }
+                            ]
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                },
                 "layout_61b2161ea3a7f": {
                     "key": "layout_61b2161ea3a7f",
                     "name": "blog",
@@ -2610,5 +2698,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1639643820
+    "modified": 1639754722
 }

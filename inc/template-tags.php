@@ -227,3 +227,100 @@ if ( ! function_exists( 'wp_body_open' ) ) :
 		do_action( 'wp_body_open' );
 	}
 endif;
+
+/**
+ * Prints HTML of header.
+ */
+function theme_header_html() {
+
+	if ( is_404() ) {
+		return;
+	}
+
+	$header_classes = 'header-style1 menu_area-light';
+	$nav_classes    = 'navbar-default border-bottom border-color-light-white';
+
+	if ( ! is_page_template( 'page-home.php' ) ) {
+		$header_classes = 'header-style3';
+		$nav_classes    = 'navbar-default';
+	}
+	?>
+
+	<header class="<?php echo esc_html( $header_classes ); ?>">
+
+	<!-- Top bar -->
+	<?php get_template_part( 'template-parts/header/top', 'bar' ); ?>
+
+	<div class="<?php echo esc_html( $nav_classes ); ?>">
+
+		<!-- Top search -->
+		<?php get_template_part( 'template-parts/header/top', 'searchform' ); ?>
+
+		<div class="container-fluid px-lg-1-6 px-xl-2-5 px-xxl-2-9">
+			<div class="row align-items-center">
+				<div class="col-12 col-lg-12">
+					<div class="menu_area alt-font">
+
+						<nav class="navbar navbar-expand-lg navbar-light p-0">
+
+							<!-- Logo -->
+							<?php theme_logo(); ?>
+
+							<!-- Menu -->
+							<div class="navbar-toggler"></div>
+							<?php
+							$nav = new HGAsh_Menu_Walker( 'main-menu' );
+							echo $nav->build_menu(); // phpcs:ignore
+							?>
+
+							<!-- Search icon and button -->
+							<?php get_template_part( 'template-parts/header/icon', 'button' ); ?>
+
+						</nav>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	</header>
+
+	<?php
+}
+
+/**
+ * Prints HTML of footer.
+ */
+function theme_footer_html() {
+
+	if ( is_404() ) {
+		return;
+	}
+	?>
+
+	<footer class="pt-6 pt-md-8">
+		<div class="container">
+			<div class="row mb-6 mb-md-8 mt-n1-9">
+
+				<?php
+				/**
+				 * Widgets here
+				 */
+				get_template_part( 'template-parts/footer/widget', '1' );
+				get_template_part( 'template-parts/footer/widget', '2' );
+				get_template_part( 'template-parts/footer/widget', '3' );
+				get_template_part( 'template-parts/footer/widget', '4' );
+				?>
+
+			</div>
+		</div>
+		<?php
+		/**
+		 * Copyrights
+		 */
+		get_template_part( 'template-parts/footer/copyrights' );
+		?>
+	</footer>
+
+	<?php
+}

@@ -54,6 +54,24 @@ class ACF_Options_Panel {
 					'parent_slug' => $parent['menu_slug'],
 				]
 			);
+
+			// Add sub page.
+			$child = acf_add_options_page(
+				[
+					'page_title'  => __( 'Archive Pages', 'hgash' ),
+					'menu_title'  => __( 'Archive Pages', 'hgash' ),
+					'parent_slug' => $parent['menu_slug'],
+				]
+			);
+
+			// Add sub page.
+			// $child = acf_add_options_page(
+			// 	[
+			// 		'page_title'  => __( '404 Page', 'hgash' ),
+			// 		'menu_title'  => __( '404', 'hgash' ),
+			// 		'parent_slug' => $parent['menu_slug'],
+			// 	]
+			// );
 		}
 	}
 

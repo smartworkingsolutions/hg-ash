@@ -165,7 +165,11 @@ function hgash_scripts() {
 	// Quform css.
 	wp_enqueue_style( 'hgash-quform-base', $path . '/css/quform/base.css', [], $version );
 
+	// Main style css.
 	wp_enqueue_style( 'hgash-style', get_stylesheet_uri(), [], $version );
+
+	// Custom css.
+	wp_enqueue_style( 'hgash-custom', $path . '/css/custom.css', [], $version );
 
 	/**
 	 * Scripts

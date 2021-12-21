@@ -12,31 +12,7 @@
 ?>
 	<?php do_action( 'hgash_before_footer' ); ?>
 
-	<!-- FOOTER
-	================================================== -->
-	<footer class="pt-6 pt-md-8">
-		<div class="container">
-			<div class="row mb-6 mb-md-8 mt-n1-9">
-
-				<?php
-				/**
-				 * Widgets here
-				 */
-				get_template_part( 'template-parts/footer/widget', '1' );
-				get_template_part( 'template-parts/footer/widget', '2' );
-				get_template_part( 'template-parts/footer/widget', '3' );
-				get_template_part( 'template-parts/footer/widget', '4' );
-				?>
-
-			</div>
-		</div>
-		<?php
-		/**
-		 * Copyrights
-		 */
-		get_template_part( 'template-parts/footer/copyrights' );
-		?>
-	</footer>
+	<?php theme_footer_html(); ?>
 
 </div><!-- #page, .main-wrapper -->
 

@@ -18,6 +18,7 @@ class Custom_Post_Types {
 	public function __construct() {
 		add_action( 'init', [ $this, 'projects_custom_post_type' ] );
 		add_action( 'init', [ $this, 'projects_custom_taxonomy' ] );
+		add_action( 'init', [ $this, 'faqs_custom_post_type' ] );
 	}
 
 	/**
@@ -49,7 +50,7 @@ class Custom_Post_Types {
 			'description'         => __( 'Project posts', 'hgash' ),
 			'labels'              => $labels,
 			// Features this CPT supports in Post Editor.
-			'supports'            => [ 'title', 'editor', 'excerpt', 'author', 'thumbnail', 'comments', 'revisions', 'custom-fields' ],
+			'supports'            => [ 'title', 'editor', 'excerpt', 'author', 'thumbnail', 'revisions', 'custom-fields' ],
 			// You can associate this CPT with a taxonomy or custom taxonomy.
 			'taxonomies'          => [ 'project_category' ],
 			/**
@@ -110,6 +111,61 @@ class Custom_Post_Types {
 				'show_in_rest'      => true,
 			]
 		);
+	}
+
+	/**
+	 * FAQs CPT
+	 */
+	public function faqs_custom_post_type() {
+
+		// Set UI labels for Custom Post Type.
+		$labels = [
+			'name'               => _x( 'FAQs', 'Post Type General Name', 'hgash' ),
+			'singular_name'      => _x( 'FAQ', 'Post Type Singular Name', 'hgash' ),
+			'menu_name'          => __( 'FAQs', 'hgash' ),
+			'parent_item_colon'  => __( 'Parent FAQ', 'hgash' ),
+			'all_items'          => __( 'All FAQs', 'hgash' ),
+			'view_item'          => __( 'View FAQ', 'hgash' ),
+			'add_new_item'       => __( 'Add New FAQ', 'hgash' ),
+			'add_new'            => __( 'Add New', 'hgash' ),
+			'edit_item'          => __( 'Edit FAQ', 'hgash' ),
+			'update_item'        => __( 'Update FAQ', 'hgash' ),
+			'search_items'       => __( 'Search FAQ', 'hgash' ),
+			'not_found'          => __( 'Not Found', 'hgash' ),
+			'not_found_in_trash' => __( 'Not found in Trash', 'hgash' ),
+		];
+
+		// Set other options for Custom Post Type.
+		$args = [
+			'label'               => __( 'FAQs', 'hgash' ),
+			'menu_icon'           => 'dashicons-format-quote',
+			'description'         => __( 'FAQ posts', 'hgash' ),
+			'labels'              => $labels,
+			// Features this CPT supports in Post Editor.
+			'supports'            => [ 'title', 'editor', 'custom-fields' ],
+			/**
+			 * A hierarchical CPT is like Pages and can have
+			 * Parent and child items. A non-hierarchical CPT
+			 * is like Posts.
+			 */
+			'hierarchical'        => false,
+			'public'              => true,
+			'show_ui'             => true,
+			'show_in_menu'        => true,
+			'show_in_nav_menus'   => true,
+			'show_in_admin_bar'   => true,
+			'menu_position'       => 5,
+			'can_export'          => true,
+			'has_archive'         => true,
+			'exclude_from_search' => false,
+			'publicly_queryable'  => true,
+			'capability_type'     => 'post',
+			'show_in_rest'        => true,
+
+		];
+
+		// Registering your Custom Post Type.
+		register_post_type( 'faqs', $args );
 	}
 
 }
