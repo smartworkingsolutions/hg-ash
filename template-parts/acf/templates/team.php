@@ -43,7 +43,11 @@
 				the_row();
 
 				// Load sub field value.
-				$image        = df_resize( get_sub_field( 'member_image' ), '', 551, 580, true, true );
+				$image    = '';
+				$img_html = '';
+				if ( get_sub_field( 'member_image' ) ) {
+					$image = df_resize( get_sub_field( 'member_image' ), '', 551, 580, true, true );
+				}
 				$name         = get_sub_field( 'member_name' );
 				$link         = get_sub_field( 'member_link' );
 				$job          = get_sub_field( 'member_job' );
@@ -62,6 +66,14 @@
 					);
 				}
 
+				if ( get_sub_field( 'member_image' ) && $image ) {
+					$img_html = sprintf(
+						'<img src="%s" class="card-img-top" alt="%s">',
+						$image['url'],
+						get_the_title(),
+					);
+				}
+
 				$facebook_html = $facebook_url
 					? sprintf( '<li><a href="%s"><i class="ti-facebook"></i></a></li>', esc_url( $facebook_url ) )
 					: '';
@@ -76,7 +88,7 @@
 					'<div class="col-sm-6 col-lg-3 mt-1-9 wow fadeIn" data-wow-delay="200ms">
 						<div class="card card-style3 border-0 text-center">
 							<div class="card-img position-relative">
-								<img src="%s" class="card-img-top" alt="...">
+								%s
 								<ul class="social-icon list-unstyled">
 									%s
 									%s
@@ -89,7 +101,7 @@
 							</div>
 						</div>
 					</div>',
-					esc_url( $image['url'] ),
+					wp_kses_post( $img_html ),
 					wp_kses_post( $facebook_html ),
 					wp_kses_post( $twitter_html ),
 					wp_kses_post( $linkedin_html ),

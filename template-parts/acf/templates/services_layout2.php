@@ -37,14 +37,17 @@
 				the_row();
 
 				// Load sub field value.
-				$image_html    = '';
-				$icon          = get_sub_field( 'service_l2_icon' );
-				$hover_image   = df_resize( get_sub_field( 'service_l2_hover_image' ), '', 551, 537, true, true );
+				$image_html  = '';
+				$hover_image = '';
+				$icon        = get_sub_field( 'service_l2_icon' );
+				if ( get_sub_field( 'service_l2_hover_image' ) ) {
+					$hover_image = df_resize( get_sub_field( 'service_l2_hover_image' ), '', 551, 537, true, true );
+				}
 				$service_title = get_sub_field( 'service_l2_title' );
 				$service_link  = get_sub_field( 'service_l2_link' );
 				$content       = get_sub_field( 'service_l2_content' );
 
-				if ( $hover_image ) {
+				if ( get_sub_field( 'service_l2_hover_image' ) && $hover_image ) {
 					$image_html = sprintf(
 						'<div class="hover-bg"><img src="%s" alt="%s"></div>',
 						esc_url( $hover_image['url'] ),

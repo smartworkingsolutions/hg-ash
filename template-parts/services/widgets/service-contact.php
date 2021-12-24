@@ -14,14 +14,17 @@ if ( have_rows( 'contact_widget', 'option' ) ) :
 	while ( have_rows( 'contact_widget', 'option' ) ) :
 		the_row();
 
+		$image       = '';
 		$bg_image_id = get_sub_field( 'contact_widget_background_image' );
-		$image       = $bg_image_id ? df_resize( $bg_image_id, '', 551, 304, true, true ) : '';
-		$main_icon   = get_sub_field( 'contact_widget_icon' );
-		$heading     = get_sub_field( 'contact_widget_title' );
-		$bg_image    = get_sub_field( 'contact_widget_background_image' );
+		if ( $bg_image_id ) {
+			$image = $bg_image_id ? df_resize( $bg_image_id, '', 551, 304, true, true ) : '';
+		}
+		$main_icon = get_sub_field( 'contact_widget_icon' );
+		$heading   = get_sub_field( 'contact_widget_title' );
+		$bg_image  = get_sub_field( 'contact_widget_background_image' );
 		?>
 
-		<div class="bg-img theme-overlay cover-background rounded" data-overlay-dark="8" data-background="<?php echo esc_url( $image['url'] ); ?>">
+		<div class="bg-img theme-overlay cover-background rounded" data-overlay-dark="8" data-background="<?php echo $image ? esc_url( $image['url'] ) : ''; ?>">
 
 			<div class="position-relative z-index-9 text-center py-5">
 

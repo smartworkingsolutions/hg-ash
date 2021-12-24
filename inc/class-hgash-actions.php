@@ -71,9 +71,9 @@ class HGAsh_Actions {
 		$thumb_id = '';
 
 		if ( has_post_thumbnail( $id ) ) {
-			$thumb_id = get_post_thumbnail_id( $id, 'hgash-testimonials', [ 'title' => '' ] );
+			$thumb_id = get_post_thumbnail_id( $id );
 		}
-		if ( is_post_type_archive( 'posts' ) ) {
+		if ( is_archive() ) {
 			$thumb_id = get_field( 'news_featured_image', 'option' );
 		}
 		if ( is_post_type_archive( 'faqs' ) && ! is_single() ) {
@@ -98,7 +98,7 @@ class HGAsh_Actions {
 
 		$title = '<div class="col-md-12"><h1>' . get_the_title( $id ) . '</h1></div>';
 
-		if ( is_post_type_archive( 'posts' ) ) {
+		if ( is_archive() && ! is_post_type_archive( 'faqs' ) ) {
 			$title = '<div class="col-md-12"><h1>' . get_field( 'news_small_heading', 'option' ) . '</h1></div>';
 		}
 		if ( is_singular( 'post' ) ) {
@@ -128,7 +128,7 @@ class HGAsh_Actions {
 			<ul class="ps-0">
 				<li><a href="<?php echo esc_url( home_url( '/' ) ); ?>"><?php esc_html_e( 'Home', 'hgash' ); ?></a></li>
 				<?php
-				if ( is_post_type_archive( 'posts' ) ) {
+				if ( is_archive() && ! is_post_type_archive( 'faqs' )  ) {
 					echo '<li>' . esc_html( get_field( 'news_heading', 'option' ) ) . '</li>';
 				}
 				if ( is_post_type_archive( 'projects' ) ) {

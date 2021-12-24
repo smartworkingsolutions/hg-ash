@@ -24,14 +24,13 @@
 					the_row();
 
 					// Load sub field value.
-					$image = get_sub_field( 'gallery_image' );
-					// $image = df_resize( get_sub_field( 'gallery_image' ), '', 856, 571, true, true );
+					$image = df_resize( get_sub_field( 'gallery_image' ), '', 856, false, true, true );
 
 					printf(
 						'<div class="col-md-6 col-lg-4 mt-1-9 grid-item" data-src="%1$s">
-							<img src="%1$s" alt="..." class="rounded" />
+							<img src="%1$s" class="rounded" />
 						</div>',
-						esc_url( $image )
+						esc_url( $image['url'] )
 					);
 
 				endwhile;

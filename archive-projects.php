@@ -28,7 +28,7 @@ get_header();
 				$terms = get_the_terms( get_the_id(), 'project_category' );
 
 				if ( has_post_thumbnail() ) {
-					$thumbnail_id = get_post_thumbnail_id( get_the_id(), 'full', [ 'title' => '' ] );
+					$thumbnail_id = get_post_thumbnail_id( get_the_id() );
 					$image        = df_resize( $thumbnail_id, '', 551, 541, true, true );
 				}
 

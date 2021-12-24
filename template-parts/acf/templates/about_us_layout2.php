@@ -5,8 +5,14 @@
  * @package HGAsh
  */
 
-$image1 = df_resize( get_sub_field( 'about_image_1' ), '', 400, 600, true, true );
-$image2 = df_resize( get_sub_field( 'about_image_2' ), '', 300, 396, true, true );
+$image1 = '';
+$image2 = '';
+if ( get_sub_field( 'about_image_1' ) ) {
+	$image1 = df_resize( get_sub_field( 'about_image_1' ), '', 400, 600, true, true );
+}
+if ( get_sub_field( 'about_image_2' ) ) {
+	$image2 = df_resize( get_sub_field( 'about_image_2' ), '', 300, 396, true, true );
+}
 ?>
 
 <section class="about-section">

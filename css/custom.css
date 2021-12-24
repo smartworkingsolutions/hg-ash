@@ -14,3 +14,9 @@
 .top-search {
     background: var(--color-darkgrey)!important;
 }
+.navbar-brand img {
+    width: 100%;
+}
+.footer-logo {
+    max-width: 100px;
+}

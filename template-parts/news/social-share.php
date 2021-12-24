@@ -8,7 +8,7 @@
 $img_url = '';
 
 if ( has_post_thumbnail() ) {
-	$thumbnail_id = get_post_thumbnail_id( get_the_id(), 'full', [ 'title' => '' ] );
+	$thumbnail_id = get_post_thumbnail_id( get_the_id() );
 	$image        = df_resize( $thumbnail_id, '', 600, 400, true, true );
 	$img_url      = $image['url'];
 }

@@ -10,7 +10,7 @@
 <div class="card card-style7 border-0">
 	<?php
 	if ( has_post_thumbnail() ) {
-		$thumbnail_id = get_post_thumbnail_id( get_the_id(), 'full', [ 'title' => '' ] );
+		$thumbnail_id = get_post_thumbnail_id( get_the_id() );
 		$image        = df_resize( $thumbnail_id, '', 856, 514, true, true );
 		?>
 		<img src="<?php echo esc_url( $image['url'] ); ?>" class="card-img-top" alt="Featured single image">

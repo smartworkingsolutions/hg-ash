@@ -29,7 +29,7 @@ if ( ! $widget ) {
 
 		if ( has_post_thumbnail() ) {
 
-			$thumb_id = get_post_thumbnail_id( get_the_id(), 'hgash-blog-thumb', [ 'title' => '' ] );
+			$thumb_id = get_post_thumbnail_id( get_the_id() );
 			$image    = df_resize( $thumb_id, '', 80, 80, true, true );
 
 			$thumbnail = $image ? sprintf(

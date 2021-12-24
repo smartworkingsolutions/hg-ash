@@ -13,8 +13,8 @@
 		<?php get_template_part( 'template-parts/services/widgets/service', 'links' ); ?>
 
 		<?php get_template_part( 'template-parts/services/widgets/service', 'address' ); ?>
-		
+
 		<?php get_template_part( 'template-parts/services/widgets/service', 'contact' ); ?>
-		
+
 	</div>
 </div>

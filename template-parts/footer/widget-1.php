@@ -19,7 +19,7 @@ if ( ! $widget ) {
 	<?php
 
 	if ( $widget['footer_logo'] ) {
-		echo '<img src="' . esc_url( $widget['footer_logo'] ) . '" class="mb-1-9" alt="Footer Logo">';
+		echo '<img class="footer-logo" src="' . esc_url( $widget['footer_logo'] ) . '" class="mb-1-9" alt="Footer Logo">';
 	}
 
 	if ( $widget['footer_text'] ) {

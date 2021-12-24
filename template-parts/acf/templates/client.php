@@ -5,7 +5,10 @@
  * @package HGAsh
  */
 
-$image = df_resize( get_sub_field( 'client_image' ), '', 660, 267, true, true );
+$image = '';
+if ( get_sub_field( 'client_image' ) ) {
+	$image = df_resize( get_sub_field( 'client_image' ), '', 660, 267, true, true );
+}
 $count = 1;
 ?>
 
@@ -48,7 +51,11 @@ $count = 1;
 						the_row();
 
 						// Load sub field value.
-						$logo = df_resize( get_sub_field( 'client_logo' ), '', 144, 44, true, true );
+						$logo     = '';
+						$img_html = '';
+						if ( get_sub_field( 'client_logo' ) ) {
+							$logo = df_resize( get_sub_field( 'client_logo' ), '', 144, 44, true, true );
+						}
 
 						$classes = 'col-6 col-md-4 border-bottom border-end py-4 py-lg-3';
 						if ( 2 === $count ) {
@@ -66,16 +73,23 @@ $count = 1;
 						if ( 6 === $count ) {
 							$classes = 'col-6 col-md-4 py-4 py-lg-3';
 						}
-						// echo $count;
-						
+
+						if ( get_sub_field( 'client_logo' ) && $logo ) {
+							$img_html = sprintf(
+								'<img src="%s" alt="%s">',
+								$logo['url'],
+								get_the_title(),
+							);
+						}
+
 						printf(
 							'<div class="%s">
 								<div class="p-xl-4 p-md-2">
-									<img src="%s" alt="...">
+									%s
 								</div>
 							</div>',
 							esc_html( $classes ),
-							esc_url( $logo['url'] )
+							wp_kses_post( $img_html )
 						);
 
 						++$count;

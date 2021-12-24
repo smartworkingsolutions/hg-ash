@@ -23,10 +23,13 @@ $count = 1;
 					the_row();
 
 					// Load sub field value.
-					$image = df_resize( get_sub_field( 'carousel_image' ), '', 856, 571, true, true );
+					$image = '';
+					if ( get_sub_field( 'carousel_image' ) ) {
+						$image = df_resize( get_sub_field( 'carousel_image' ), '', 856, 571, true, true );
+					}
 
 					printf(
-						'<div class="item"><img src="%s" alt="..." class="rounded" /></div>',
+						'<div class="item"><img src="%s" class="rounded" /></div>',
 						esc_url( $image['url'] )
 					);
 

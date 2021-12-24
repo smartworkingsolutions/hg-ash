@@ -5,14 +5,20 @@
  * @package HGAsh
  */
 
-$image             = df_resize( get_sub_field( 'about_image' ), '', 696, 816, true, true );
-$number            = get_sub_field( 'about_number' );
-$number_text       = get_sub_field( 'about_number_text' );
-$small_heading     = get_sub_field( 'about_small_heading' );
-$heading           = get_sub_field( 'about_heading' );
-$content1          = get_sub_field( 'about_content_1' );
-$content2          = get_sub_field( 'about_content_2' );
-$author_image      = df_resize( get_sub_field( 'author_image' ), '', 80, 80, true, true );
+$image        = '';
+$author_image = '';
+if ( get_sub_field( 'about_image' ) ) {
+	$image = df_resize( get_sub_field( 'about_image' ), '', 696, 816, true, true );
+}
+$number        = get_sub_field( 'about_number' );
+$number_text   = get_sub_field( 'about_number_text' );
+$small_heading = get_sub_field( 'about_small_heading' );
+$heading       = get_sub_field( 'about_heading' );
+$content1      = get_sub_field( 'about_content_1' );
+$content2      = get_sub_field( 'about_content_2' );
+if ( get_sub_field( 'author_image' ) ) {
+	$author_image = df_resize( get_sub_field( 'author_image' ), '', 80, 80, true, true );
+}
 $author_name       = get_sub_field( 'author_name' );
 $author_job        = get_sub_field( 'author_job' );
 $about_button_text = get_sub_field( 'about_button_text' );
@@ -27,7 +33,7 @@ $about_button_url  = get_sub_field( 'about_button_url' );
 
 					<?php
 					if ( $image ) {
-						echo '<img src="' . $image['url'] . '" alt="..." class="rounded">';
+						echo '<img src="' . $image['url'] . '" class="rounded">';
 					}
 					?>
 

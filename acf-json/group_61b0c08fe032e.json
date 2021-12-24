@@ -1006,7 +1006,7 @@
                                     "name": "service_l2_hover_image",
                                     "type": "image",
                                     "instructions": "",
-                                    "required": 0,
+                                    "required": 1,
                                     "conditional_logic": 0,
                                     "wrapper": {
                                         "width": "",
@@ -2707,7 +2707,7 @@
                                         "class": "",
                                         "id": ""
                                     },
-                                    "return_format": "url",
+                                    "return_format": "id",
                                     "preview_size": "full",
                                     "library": "all",
                                     "min_width": "",
@@ -2753,5 +2753,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1640259167
+    "modified": 1640349628
 }

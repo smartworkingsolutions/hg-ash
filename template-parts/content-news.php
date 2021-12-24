@@ -12,7 +12,7 @@
 
 		<?php
 		if ( has_post_thumbnail() ) {
-			$thumbnail_id = get_post_thumbnail_id( get_the_id(), 'full', [ 'title' => '' ] );
+			$thumbnail_id = get_post_thumbnail_id( get_the_id() );
 			$image        = df_resize( $thumbnail_id, '', 856, 514, true, true );
 			?>
 			<div class="card-img position-relative">

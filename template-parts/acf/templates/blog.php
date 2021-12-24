@@ -44,14 +44,19 @@ $post_num = get_sub_field( 'blog_number_of_posts' ) ? get_sub_field( 'blog_numbe
 		while ( $query->have_posts() ) :
 			$query->the_post();
 
-			$thumbnail = '';
+			$thumbnail    = '';
+			$thumbnail_id = '';
 
 			if ( has_post_thumbnail() ) {
+
+				$thumbnail_id = get_post_thumbnail_id( get_the_id() );
+				$image        = df_resize( $thumbnail_id, '', 856, 514, true, true );
+
 				$thumbnail = sprintf(
 					'<div class="card-img position-relative">
 						<img src="%1$s" alt="%2$s">
 					</div>',
-					get_the_post_thumbnail_url( $wp_query->ID, 'hgash-blog', [ 'title' => '' ] ),
+					$image['url'],
 					get_the_title(),
 				);
 			}

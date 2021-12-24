@@ -27,12 +27,17 @@ if ( ! $widget ) {
 	while ( $query->have_posts() ) :
 		$query->the_post();
 
-		$thumbnail = '';
+		$thumbnail    = '';
+		$thumbnail_id = '';
 
 		if ( has_post_thumbnail() ) {
+
+			$thumbnail_id = get_post_thumbnail_id( get_the_id() );
+			$image        = df_resize( $thumbnail_id, '', 80, 80, true, true );
+
 			$thumbnail = sprintf(
 				'<img src="%1$s" class="rounded" alt="%2$s">',
-				get_the_post_thumbnail_url( $wp_query->ID, 'hgash-blog-thumb', [ 'title' => '' ] ),
+				$image['url'],
 				get_the_title(),
 			);
 		}

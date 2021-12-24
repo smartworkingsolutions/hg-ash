@@ -46,15 +46,15 @@ if ( ! function_exists( 'hgash_setup' ) ) :
 		 * @link https://developer.wordpress.org/themes/functionality/featured-images-post-thumbnails/
 		 */
 		add_theme_support( 'post-thumbnails' );
-		set_post_thumbnail_size( 856, 514, true );
-		add_image_size( 'hgash-slider', 1920, 900, true ); // Slider.
-		add_image_size( 'hgash-about', 696, 816, true ); // About us image.
-		add_image_size( 'hgash-author', 80, 80, true ); // Author thumb.
-		add_image_size( 'hgash-why-us', 972, 670, true ); // Why us image.
-		add_image_size( 'hgash-team', 551, 580, true ); // Team image.
-		add_image_size( 'hgash-testimonials', 1920, 600, true ); // Testimonials BG image.
-		add_image_size( 'hgash-blog', 856, 514, true ); // Blog image.
-		add_image_size( 'hgash-blog-thumb', 69, 70, true ); // Blog thumb image.
+		// set_post_thumbnail_size( 856, 514, true );
+		// add_image_size( 'hgash-slider', 1920, 900, true ); // Slider.
+		// add_image_size( 'hgash-about', 696, 816, true ); // About us image.
+		// add_image_size( 'hgash-author', 80, 80, true ); // Author thumb.
+		// add_image_size( 'hgash-why-us', 972, 670, true ); // Why us image.
+		// add_image_size( 'hgash-team', 551, 580, true ); // Team image.
+		// add_image_size( 'hgash-testimonials', 1920, 600, true ); // Testimonials BG image.
+		// add_image_size( 'hgash-blog', 856, 514, true ); // Blog image.
+		// add_image_size( 'hgash-blog-thumb', 69, 70, true ); // Blog thumb image.
 
 		// This theme uses wp_nav_menu() in one location.
 		register_nav_menus(
@@ -271,3 +271,11 @@ function num_posts_archive_faqs( $query ) {
 	return $query;
 }
 add_filter( 'pre_get_posts', 'num_posts_archive_faqs' );
+
+add_filter( 'intermediate_image_sizes_advanced', 'prefix_remove_default_images' );
+// This will remove the default image sizes medium and large. 
+function prefix_remove_default_images( $sizes ) {
+ unset( $sizes['medium']); // 300px
+ unset( $sizes['large']); // 1024px
+ return $sizes;
+}
