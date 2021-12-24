@@ -37,14 +37,22 @@ $count = 1;
 					while ( have_posts() ) :
 						the_post();
 
-						$card_header   = 'btn btn-link collapsed';
-						$card_body     = 'collapse';
-						$aria_expanded = 'false';
+						$card_header    = 'btn btn-link collapsed';
+						$card_body      = 'collapse';
+						$aria_expanded  = 'false';
+						$read_more_html = '';
 
 						if ( 1 === $count ) {
 							$card_header   = 'btn btn-link';
 							$card_body     = 'collapse show';
 							$aria_expanded = 'true';
+						}
+						if ( get_field( 'faqs_enable_read_more' ) ) {
+							$read_more_html = sprintf(
+								'<a href="%s" class="btn btn-link text-primary">%s</a>',
+								get_permalink(),
+								esc_html__( 'Read more', 'hgash' )
+							);
 						}
 
 						printf(
@@ -54,7 +62,8 @@ $count = 1;
 										<button class="%2$s" data-bs-toggle="collapse" data-bs-target="#collapse%1$s" aria-expanded="%3$s" aria-controls="collapse%1$s">%4$s</button></h5>
 								</div>
 								<div id="collapse%1$s" class="%5$s" aria-labelledby="heading%1$s" data-bs-parent="#accordion">
-									<div class="card-body">%6$s</div>
+									<div class="card-body">%6$s%7$s</div>
+									
 								</div>
 							</div>',
 							$count, // phpcs:ignore
@@ -62,7 +71,8 @@ $count = 1;
 							esc_html( $aria_expanded ),
 							esc_html( get_the_title() ),
 							esc_html( $card_body ),
-							get_the_content() // phpcs:ignore
+							get_the_excerpt(), // phpcs:ignore
+							wp_kses_post( $read_more_html )
 						);
 
 						++$count;
@@ -73,105 +83,112 @@ $count = 1;
 
 				endif;
 				?>
-				<!-- <div id="accordion" class="accordion-style">
-					<div class="card mb-3">
-						<div class="card-header" id="headingOne">
-							<h5 class="mb-0">
-								<button class="btn btn-link" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">What should I include in my personal statement?</button></h5>
-						</div>
-						<div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-bs-parent="#accordion">
-							<div class="card-body">
-								It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters.
+
+		</div>
+	</div>
+</section>
+
+<section class="bg-light">
+	<div class="container">
+		<div class="text-center mb-2-9 mb-lg-6 wow fadeIn" data-wow-delay="100ms">
+			<span class="text-secondary mb-2 d-block fw-bold text-uppercase">Contact Us</span>
+			<h2 class="mb-0 h1">Get In Touch</h2>
+		</div>
+
+		<div class="row">
+			<div class="col-lg-8 mb-5 mb-lg-0 mb-md-5 mx-auto">
+				<div class="form2 bg-white p-4 p-md-5">
+					<form class="quform" action="quform/contact.php" method="post" enctype="multipart/form-data" onclick="">
+						<div class="quform-elements">
+							<div class="row">
+								<!-- Begin Text input element -->
+								<div class="col-md-6">
+									<div class="quform-element form-group">
+										<label for="name">Your Name <span class="quform-required">*</span></label>
+										<div class="quform-input">
+											<input class="form-control" id="name" type="text" name="name" placeholder="Your name here" />
+										</div>
+									</div>
+								</div>
+								<!-- End Text input element -->
+
+								<!-- Begin Text input element -->
+								<div class="col-md-6">
+									<div class="quform-element form-group">
+										<label for="email">Your Email <span class="quform-required">*</span></label>
+										<div class="quform-input">
+											<input class="form-control" id="email" type="text" name="email" placeholder="Your email here" />
+										</div>
+									</div>
+								</div>
+								<!-- End Text input element -->
+
+								<!-- Begin Text input element -->
+								<div class="col-md-6">
+									<div class="quform-element form-group">
+										<label for="subject">Your Subject <span class="quform-required">*</span></label>
+										<div class="quform-input">
+											<input class="form-control" id="subject" type="text" name="subject" placeholder="Your subject here" />
+										</div>
+									</div>
+								</div>
+								<!-- End Text input element -->
+
+								<!-- Begin Text input element -->
+								<div class="col-md-6">
+									<div class="quform-element form-group">
+										<label for="phone">Contact Number</label>
+										<div class="quform-input">
+											<input class="form-control" id="phone" type="text" name="phone" placeholder="Your phone here" />
+										</div>
+									</div>
+								</div>
+								<!-- End Text input element -->
+
+								<!-- Begin Textarea element -->
+								<div class="col-md-12">
+									<div class="quform-element form-group">
+										<label for="message">Message <span class="quform-required">*</span></label>
+										<div class="quform-input">
+											<textarea class="form-control h-auto" id="message" name="message" rows="3" placeholder="Tell us a few words"></textarea>
+										</div>
+									</div>
+								</div>
+								<!-- End Textarea element -->
+
+								<!-- Begin Captcha element -->
+								<div class="col-md-12">
+									<div class="quform-element">
+										<div class="form-group">
+											<div class="quform-input">
+												<input class="form-control" id="type_the_word" type="text" name="type_the_word" placeholder="Type the below word" />
+											</div>
+										</div>
+										<div class="form-group">
+											<div class="quform-captcha">
+												<div class="quform-captcha-inner">
+													<img src="<?php echo get_template_directory_uri() . '/img/content/courier-new-light.png'; // phpcs:ignore ?>" alt="...">
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<!-- End Captcha element -->
+
+								<!-- Begin Submit button -->
+								<div class="col-md-12">
+									<div class="quform-submit-inner">
+										<button class="butn-style3" type="submit"><span>Send Message</span></button>
+									</div>
+									<div class="quform-loading-wrap text-start"><span class="quform-loading"></span></div>
+								</div>
+								<!-- End Submit button -->
+
 							</div>
 						</div>
-					</div>
-					<div class="card mb-3">
-						<div class="card-header" id="headingTwo">
-							<h5 class="mb-0">
-								<button class="btn btn-link collapsed" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">Do you support banking loan?</button></h5>
-						</div>
-						<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-bs-parent="#accordion">
-							<div class="card-body">
-								Neque porro quisquam est quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-							</div>
-						</div>
-					</div>
-					<div class="card mb-3">
-						<div class="card-header" id="headingThree">
-							<h5 class="mb-0">
-								<button class="btn btn-link collapsed" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">What do I get when my account is paid off?</button></h5>
-						</div>
-						<div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-bs-parent="#accordion">
-							<div class="card-body">
-								It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-							</div>
-						</div>
-					</div>
-					<div class="card mb-0">
-						<div class="card-header" id="headingFour">
-							<h5 class="mb-0">
-								<button class="btn btn-link collapsed" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">How can I make a change to my application?</button></h5>
-						</div>
-						<div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-bs-parent="#accordion">
-							<div class="card-body">
-								It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore.
-							</div>
-						</div>
-					</div>
-				</div> -->
-			</div>
-			<!-- <div class="col-lg-6">
-				<div id="accordion1" class="accordion-style">
-					<div class="card mb-3">
-						<div class="card-header" id="headingFive">
-							<h5 class="mb-0">
-								<button class="btn btn-link" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="true" aria-controls="collapseFive">Where can I find out about funding?</button>
-							</h5>
-						</div>
-						<div id="collapseFive" class="collapse show" aria-labelledby="headingFive" data-bs-parent="#accordion1">
-							<div class="card-body">
-								The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.
-							</div>
-						</div>
-					</div>
-					<div class="card mb-3">
-						<div class="card-header" id="headingSix">
-							<h5 class="mb-0">
-								<button class="btn btn-link collapsed" data-bs-toggle="collapse" data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">Do we really need a business plan?</button>
-							</h5>
-						</div>
-						<div id="collapseSix" class="collapse" aria-labelledby="headingSix" data-bs-parent="#accordion1">
-							<div class="card-body">
-								Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose.
-							</div>
-						</div>
-					</div>
-					<div class="card mb-3">
-						<div class="card-header" id="headingSeven">
-							<h5 class="mb-0">
-								<button class="btn btn-link collapsed" data-bs-toggle="collapse" data-bs-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">Can I get a free trial before I purchase?</button>
-							</h5>
-						</div>
-						<div id="collapseSeven" class="collapse" aria-labelledby="headingSeven" data-bs-parent="#accordion1">
-							<div class="card-body">
-								There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing.
-							</div>
-						</div>
-					</div>
-					<div class="card mb-0">
-						<div class="card-header" id="headingEight">
-							<h5 class="mb-0">
-								<button class="btn btn-link collapsed" data-bs-toggle="collapse" data-bs-target="#collapseEight" aria-expanded="false" aria-controls="collapseEight">What type of company is measured?</button>
-							</h5>
-						</div>
-						<div id="collapseEight" class="collapse" aria-labelledby="headingEight" data-bs-parent="#accordion1">
-							<div class="card-body">
-								Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College.
-							</div>
-						</div>
-					</div>
+					</form>
 				</div>
-			</div> -->
+			</div>
 		</div>
 	</div>
 </section>

@@ -1,7 +1,16 @@
 /* Should you need to overwrite any of our SCSS or LESS or SASS code need to add any custom code, We highly recommend that you add your code into this file, so whenever theme update is available and you update the theme, You will not lose your hard work :) */
 
-/* @media (min-width: 992px) {
-    .custom-accordion .card {
-        margin: 0 16px;
-    }
-} */
+.accordion-style .card-body .btn-link {
+    padding-left: 0;
+    padding-bottom: 0;
+}
+.page-title-section ul li:after {
+    margin: 0 8px;
+}
+.testimonial-carousel .owl-dots .owl-dot.active span,
+.testimonial-carousel .owl-dots .owl-dot:hover span {
+    background: var(--color-darkgrey);
+}
+.top-search {
+    background: var(--color-darkgrey)!important;
+}

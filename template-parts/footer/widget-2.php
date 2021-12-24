@@ -19,7 +19,7 @@ if ( ! $widget ) {
 		echo '<h3 class="text-primary h5 mb-1-9">' . esc_html( $widget['footer_widget_2_heading'] ) . '</h3>';
 	}
 
-	// Links.
+	// Group.
 	if ( have_rows( 'footer_widget_2', 'option' ) ) :
 
 		while ( have_rows( 'footer_widget_2', 'option' ) ) :

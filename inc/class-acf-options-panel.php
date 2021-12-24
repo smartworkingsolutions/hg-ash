@@ -64,14 +64,6 @@ class ACF_Options_Panel {
 				]
 			);
 
-			// Add sub page.
-			// $child = acf_add_options_page(
-			// 	[
-			// 		'page_title'  => __( '404 Page', 'hgash' ),
-			// 		'menu_title'  => __( '404', 'hgash' ),
-			// 		'parent_slug' => $parent['menu_slug'],
-			// 	]
-			// );
 		}
 	}
 

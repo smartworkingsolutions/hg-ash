@@ -7,11 +7,11 @@
  * @package HGAsh
  */
 
-if ( ! is_active_sidebar( 'sidebar-1' ) ) {
-	return;
-}
 ?>
 
-<aside id="secondary" class="widget-area">
-	<?php dynamic_sidebar( 'sidebar-1' ); ?>
-</aside><!-- #secondary -->
+<div class="sidebar ps-xl-4">
+	<?php get_template_part( 'template-parts/news/widgets/recent', 'news' ); ?>
+	<?php get_template_part( 'template-parts/news/widgets/categories', 'widget' ); ?>
+	<?php get_template_part( 'template-parts/news/widgets/tags', 'widget' ); ?>
+	<?php get_template_part( 'template-parts/news/widgets/social', 'icons' ); ?>
+</div><!-- .sidebar -->

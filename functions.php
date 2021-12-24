@@ -136,10 +136,10 @@ function hgash_widgets_init() {
 			'name'          => esc_html__( 'Sidebar', 'hgash' ),
 			'id'            => 'sidebar-1',
 			'description'   => esc_html__( 'Add widgets here.', 'hgash' ),
-			'before_widget' => '<section id="%1$s" class="widget %2$s">',
-			'after_widget'  => '</section>',
-			'before_title'  => '<h2 class="widget-title">',
-			'after_title'   => '</h2>',
+			'before_widget' => '<div id="%1$s" class="widget mb-1-9 p-4 wow fadeIn %2$s" data-wow-delay="200ms">',
+			'after_widget'  => '</div>',
+			'before_title'  => '<h3 class="mb-1-6 h5 widget-title">',
+			'after_title'   => '</h3>',
 		]
 	);
 }
@@ -258,3 +258,16 @@ function get_acf_preview_path() {
 	return 'template-parts/acf/images';
 }
 add_filter( 'acf-flexible-content-preview.images_path', 'get_acf_preview_path' );
+
+/**
+ * Set FAQs number of posts.
+ *
+ * @param obj $query default obj.
+ */
+function num_posts_archive_faqs( $query ) {
+	if ( ! is_admin() && $query->is_archive( 'faqs' ) && $query->is_main_query() ) {
+		$query->set( 'posts_per_page', -1 );
+	}
+	return $query;
+}
+add_filter( 'pre_get_posts', 'num_posts_archive_faqs' );

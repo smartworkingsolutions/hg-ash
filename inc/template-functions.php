@@ -61,3 +61,26 @@ function get_svg( $path, $echo = true ) {
 		return $svg;
 	}
 }
+
+/**
+ * Get Social Icons links.
+ */
+function get_social_links() {
+
+	$social_urls   = [];
+	$facebook_url  = get_field( 'facebook_url', 'options' );
+	$twitter_url   = get_field( 'twitter_url', 'options' );
+	$instagram_url = get_field( 'instagram_url', 'options' );
+	$youtube_url   = get_field( 'youtube_url', 'options' );
+	$linkedin_url  = get_field( 'linkedin_url', 'options' );
+
+	$social_urls = [
+		'facebook'  => $facebook_url ? $facebook_url : '',
+		'twitter'   => $twitter_url ? $twitter_url : '',
+		'instagram' => $instagram_url ? $instagram_url : '',
+		'youtube'   => $youtube_url ? $youtube_url : '',
+		'linkedin'  => $linkedin_url ? $linkedin_url : '',
+	];
+
+	return $social_urls;
+}

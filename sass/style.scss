@@ -42,12 +42,16 @@ Text Domain: hgash
  *
  * ---------------------------------- */
 
-$PrimaryColor: #34da89;
-$PrimaryRgbColor: rgb(52, 218, 137);
-$SecondaryColor: #4a83fd;
-$SecondaryRgbColor: rgb(74, 131, 253);
-$DarkColor: #002a5c;
-$DarkRgbColor: rgb(0, 42, 92);
+$PrimaryColor: #f4c506;
+$PrimaryRgbColor: rgb(244, 197, 6);
+$SecondaryColor: #f4c506;
+$SecondaryRgbColor: rgb(244, 197, 6);
+$DarkColor: #808080;
+$DarkRgbColor: rgb(128, 128, 128);
+
+:root {
+  --color-darkgrey: #808080;
+}
 
 $desk-xl-screen: 1399px;
 $desk-md-screen: 1199px;

@@ -37,16 +37,14 @@ $post_num = get_sub_field( 'blog_number_of_posts' ) ? get_sub_field( 'blog_numbe
 
 		echo '<div class="row mt-n1-9 g-xl-5">';
 
-		global $wp_query;
-		$wp_query = new WP_Query( // phpcs:ignore
+		$query = new WP_Query( // phpcs:ignore
 			[ 'posts_per_page' => $post_num ]
 		);
 
-		while ( have_posts() ) :
-			the_post();
+		while ( $query->have_posts() ) :
+			$query->the_post();
 
-			$thumbnail     = '';
-			$comment_count = sprintf( _n( '1 Comment', '%1$s Comments', get_comments_number() ) ); // phpcs:ignore
+			$thumbnail = '';
 
 			if ( has_post_thumbnail() ) {
 				$thumbnail = sprintf(
@@ -69,7 +67,6 @@ $post_num = get_sub_field( 'blog_number_of_posts' ) ? get_sub_field( 'blog_numbe
 						<div class="card-footer bg-white py-4 px-0 mx-4 mx-xl-1-9">
 							<div class="d-flex justify-content-between">
 								<span class="display-30"><i class="ti-calendar me-1 text-primary"></i> %5$s</span>
-								<a href="#!" class="display-30"><i class="ti-heart me-1 text-primary"></i> %6$s</a>
 							</div>
 						</div>
 					</article>
@@ -78,8 +75,7 @@ $post_num = get_sub_field( 'blog_number_of_posts' ) ? get_sub_field( 'blog_numbe
 				esc_html( get_the_title() ),
 				esc_url( get_permalink() ),
 				esc_html__( 'read more', 'hgash' ),
-				esc_html( get_the_date() ),
-				$comment_count // phpcs:ignore
+				esc_html( get_the_date() )
 			);
 
 		endwhile;

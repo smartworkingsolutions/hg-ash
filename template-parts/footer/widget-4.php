@@ -19,39 +19,41 @@ if ( ! $widget ) {
 		echo '<h3 class="text-primary h5 mb-1-9">' . esc_html( $widget['footer_widget_4_heading'] ) . '</h3>';
 	}
 	if ( $widget['footer_widget_4_text'] ) {
-		echo '<p class="text-white">' . esc_html( $widget['footer_widget_4_text'] ) . '</p>';
+		echo '<p class="mb-1-9 text-white opacity9">' . esc_html( $widget['footer_widget_4_text'] ) . '</p>';
 	}
+
+	// Group.
+	if ( have_rows( 'footer_widget_4', 'option' ) ) :
+
+		while ( have_rows( 'footer_widget_4', 'option' ) ) :
+			the_row();
+
+			echo '<ul class="footer-link list-unstyled mb-0">';
+
+			if ( have_rows( 'footer_address_lists', 'option' ) ) :
+				while ( have_rows( 'footer_address_lists', 'option' ) ) :
+					the_row();
+
+					$icon = get_sub_field( 'footer_address_icon' );
+					$text = get_sub_field( 'footer_address_text' );
+
+					printf(
+						'<li class="mb-3 text-white">
+							<i class="%s display-28 align-middle text-primary pe-3"></i>%s
+						</li>',
+						esc_html( $icon ),
+						esc_html( $text )
+					);
+
+				endwhile;
+
+			endif;
+
+			echo '</ul>';
+
+		endwhile;
+
+	endif;
 	?>
-	<!-- <h3 class="text-primary h5 mb-1-9">NewsLetter</h3> -->
-	<!-- <p class="text-white">Subscribe to our newsletter for discounts and more.</p> -->
-	<form class="quform newsletter-form" action="quform/newsletter-two.php" method="post" enctype="multipart/form-data" onclick="">
 
-		<div class="quform-elements">
-
-			<div class="row">
-
-				<!-- Begin Text input element -->
-				<div class="col-md-12">
-					<div class="quform-element">
-						<div class="quform-input">
-							<input class="form-control" id="email_address" type="text" name="email_address" placeholder="Subscribe with us" />
-						</div>
-					</div>
-				</div>
-				<!-- End Text input element -->
-
-				<!-- Begin Submit button -->
-				<div class="col-md-12">
-					<div class="quform-submit-inner">
-						<button class="butn-style1 fill m-0 w-100" type="submit"><span>Subscribe <i class="fas fa-arrow-right ms-2"></i></span></button>
-					</div>
-					<div class="quform-loading-wrap text-start"><span class="quform-loading"></span></div>
-				</div>
-				<!-- End Submit button -->
-
-			</div>
-
-		</div>
-
-	</form>
 </div>

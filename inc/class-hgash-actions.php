@@ -39,6 +39,10 @@ class HGAsh_Actions {
 		$post_id = $wp_query->get_queried_object_id();
 		$image   = $this->get_page_featured_image( $post_id );
 
+		if ( ! $image ) {
+			return;
+		}
+
 		?>
 		<section class="page-title-section bg-img cover-background left-overlay-dark" data-overlay-dark="6" data-background="<?php echo $image ? esc_url( $image['url'] ) : ''; ?>">
 			<div class="container position-unset">
@@ -69,14 +73,17 @@ class HGAsh_Actions {
 		if ( has_post_thumbnail( $id ) ) {
 			$thumb_id = get_post_thumbnail_id( $id, 'hgash-testimonials', [ 'title' => '' ] );
 		}
-		if ( is_post_type_archive( 'faqs' ) ) {
+		if ( is_post_type_archive( 'posts' ) ) {
+			$thumb_id = get_field( 'news_featured_image', 'option' );
+		}
+		if ( is_post_type_archive( 'faqs' ) && ! is_single() ) {
 			$thumb_id = get_field( 'faqs_featured_image', 'option' );
 		}
-		if ( is_post_type_archive( 'projects' ) ) {
+		if ( is_post_type_archive( 'projects' ) && ! is_single() ) {
 			$thumb_id = get_field( 'projects_featured_image', 'option' );
 		}
 
-		$image = df_resize( $thumb_id, '', 1920, 600, true, true );
+		$image = $thumb_id ? df_resize( $thumb_id, '', 1920, 600, true, true ) : '';
 
 		return $image;
 
@@ -89,10 +96,22 @@ class HGAsh_Actions {
 	 */
 	public function get_page_title( $id ) {
 
-		$title = '<div class="col-md-12"><h1>' . get_the_title( $id ) . '</div></h1>';
+		$title = '<div class="col-md-12"><h1>' . get_the_title( $id ) . '</h1></div>';
 
-		if ( is_post_type_archive( 'faqs' ) ) {
-			$title = '<div class="col-md-12"><h1>' . get_field( 'faqs_small_heading', 'option' ) . '</div></h1>';
+		if ( is_post_type_archive( 'posts' ) ) {
+			$title = '<div class="col-md-12"><h1>' . get_field( 'news_small_heading', 'option' ) . '</h1></div>';
+		}
+		if ( is_singular( 'post' ) ) {
+			$title = '<div class="col-md-12"><h4>' . get_the_title( $id ) . '</h4></div>';
+		}
+		if ( is_post_type_archive( 'faqs' ) || is_singular( 'faqs' ) ) {
+			$title = '<div class="col-md-12"><h2 class="h1">' . get_field( 'faqs_small_heading', 'option' ) . '</h2></div>';
+		}
+		if ( is_post_type_archive( 'projects' ) || is_singular( 'projects' ) ) {
+			$title = '<div class="col-md-12"><h1>' . get_field( 'projects_small_heading', 'option' ) . '</h1></div>';
+		}
+		if ( is_search() ) {
+			$title = '<div class="col-md-12"><h1>' . esc_html__( 'Search', 'hgash' ) . '</h1></div>';
 		}
 		echo wp_kses_post( $title );
 
@@ -109,9 +128,23 @@ class HGAsh_Actions {
 			<ul class="ps-0">
 				<li><a href="<?php echo esc_url( home_url( '/' ) ); ?>"><?php esc_html_e( 'Home', 'hgash' ); ?></a></li>
 				<?php
-				if ( is_post_type_archive( 'faqs' ) ) {
-					echo '<li>' . esc_html( get_field( 'faqs_heading', 'option' ) ) . '</li>';
-				} else {
+				if ( is_post_type_archive( 'posts' ) ) {
+					echo '<li>' . esc_html( get_field( 'news_heading', 'option' ) ) . '</li>';
+				}
+				if ( is_post_type_archive( 'projects' ) ) {
+					echo '<li>' . esc_html( get_field( 'projects_heading', 'option' ) ) . '</li>';
+				}
+				if ( is_search() ) {
+					echo '<li>' . esc_html( get_search_query() ) . '</li>';
+				}
+				if ( is_post_type_archive( 'faqs' ) || is_singular( 'faqs' ) ) {
+					if ( is_single() ) {
+						echo '<li><a href="/faqs">' . esc_html__( 'FAQ', 'hgash' ) . '</a></li>';
+						echo '<li>' . esc_html__( 'Answere', 'hgash' ) . '</li>';
+					} else {
+						echo '<li>' . esc_html( get_field( 'faqs_heading', 'option' ) ) . '</li>';
+					}
+				} elseif ( ! is_archive() && ! is_search() ) {
 					echo '<li>' . wp_kses_post( get_the_title( $id ) ) . '</li>';
 				}
 				?>

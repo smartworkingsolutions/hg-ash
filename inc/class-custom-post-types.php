@@ -70,7 +70,7 @@ class Custom_Post_Types {
 			'exclude_from_search' => false,
 			'publicly_queryable'  => true,
 			'capability_type'     => 'post',
-			'show_in_rest'        => true,
+			// 'show_in_rest'        => true,
 
 		];
 
@@ -142,7 +142,7 @@ class Custom_Post_Types {
 			'description'         => __( 'FAQ posts', 'hgash' ),
 			'labels'              => $labels,
 			// Features this CPT supports in Post Editor.
-			'supports'            => [ 'title', 'editor', 'custom-fields' ],
+			'supports'            => [ 'title', 'editor', 'thumbnail', 'custom-fields' ],
 			/**
 			 * A hierarchical CPT is like Pages and can have
 			 * Parent and child items. A non-hierarchical CPT
@@ -160,7 +160,7 @@ class Custom_Post_Types {
 			'exclude_from_search' => false,
 			'publicly_queryable'  => true,
 			'capability_type'     => 'post',
-			'show_in_rest'        => true,
+			// 'show_in_rest'        => true,
 
 		];
 

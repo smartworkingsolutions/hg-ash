@@ -9,7 +9,7 @@
 
 <div class="top-search bg-secondary">
 	<div class="container-fluid px-lg-1-6 px-xl-2-5 px-xxl-2-9">
-		<form class="search-form" action="search.html" method="GET" action="<?php echo esc_url( home_url( '/' ) ); ?>" accept-charset="utf-8">
+		<form class="search-form" method="GET" action="<?php echo esc_url( home_url( '/' ) ); ?>" accept-charset="utf-8">
 			<div class="input-group">
 				<span class="input-group-addon cursor-pointer">
 					<button class="search-form_submit fas fa-search text-white" type="submit"></button>

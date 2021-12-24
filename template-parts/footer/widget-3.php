@@ -20,13 +20,12 @@ if ( ! $widget ) {
 		echo '<h3 class="text-primary h5 mb-1-9">' . esc_html( $widget['footer_widget_3_heading'] ) . '</h3>';
 	}
 
-	global $wp_query;
-	$wp_query = new WP_Query( // phpcs:ignore
+	$query = new WP_Query( // phpcs:ignore
 		[ 'posts_per_page' => $post_num ]
 	);
 
-	while ( have_posts() ) :
-		the_post();
+	while ( $query->have_posts() ) :
+		$query->the_post();
 
 		$thumbnail = '';
 

@@ -565,6 +565,13 @@
         });
 
         // $('.portfolio-gallery,.portfolio-gallery-isotope').lightGallery();
+        $('.main-gallery-isotope').lightGallery();
+        $('.main-gallery-isotope').isotope({
+            itemSelector: '.grid-item',
+            masonry: {
+              columnWidth: 10
+            }
+          });
         
         // stellar
         $window.stellar();

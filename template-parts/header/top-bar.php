@@ -10,10 +10,12 @@ if ( is_page_template( 'page-home.php' ) ) {
 }
 $number        = get_field( 'top_phone_number', 'option' );
 $email         = get_field( 'top_email', 'option' );
-$facebook_url  = get_field( 'top_facebook_url', 'option' );
-$twitter_url   = get_field( 'top_twitter_url', 'option' );
-$instagram_url = get_field( 'top_instagram_url', 'option' );
-$linkedin_url  = get_field( 'top_linkedin_url', 'option' );
+// $facebook_url  = get_field( 'top_facebook_url', 'option' );
+// $twitter_url   = get_field( 'top_twitter_url', 'option' );
+// $instagram_url = get_field( 'top_instagram_url', 'option' );
+// $linkedin_url  = get_field( 'top_linkedin_url', 'option' );
+$icons = get_field( 'top_social_icons', 'options' );
+$links = get_social_links();
 ?>
 
 <div id="top-bar">
@@ -37,24 +39,24 @@ $linkedin_url  = get_field( 'top_linkedin_url', 'option' );
 			</div>
 			<div class="col-xs-12 col-md-3 d-none d-md-block">
 				<ul class="top-social-icon ps-0">
+
 					<?php
-					if ( $facebook_url ) {
-						echo '<li><a href="' . esc_url( $facebook_url ) . '"><i class="fab fa-facebook-f"></i></a></li>';
-					}
-					if ( $twitter_url ) {
-						echo '<li><a href="' . esc_url( $twitter_url ) . '"><i class="fab fa-twitter"></i></a></li>';
-					}
-					if ( $instagram_url ) {
-						echo '<li><a href="' . esc_url( $instagram_url ) . '"><i class="fab fa-instagram"></i></a></li>';
-					}
-					if ( $linkedin_url ) {
-						echo '<li><a href="' . esc_url( $linkedin_url ) . '"><i class="fab fa-linkedin-in"></i></a></li>';
+					foreach ( $icons as $icon ) {
+						if ( 'facebook' === $icon && $links['facebook'] ) {
+							echo '<li><a href="' . esc_url( $links['facebook'] ) . '"><i class="fab fa-facebook-f"></i></a></li>';
+						}
+						if ( 'twitter' === $icon && $links['twitter'] ) {
+							echo '<li><a href="' . esc_url( $links['twitter'] ) . '"><i class="fab fa-twitter"></i></a></li>';
+						}
+						if ( 'instagram' === $icon && $links['instagram'] ) {
+							echo '<li><a href="' . esc_url( $links['instagram'] ) . '"><i class="fab fa-instagram"></i></a></li>';
+						}
+						if ( 'linkedin' === $icon && $links['linkedin'] ) {
+							echo '<li><a href="' . esc_url( $links['linkedin'] ) . '"><i class="fab fa-linkedin-in"></i></a></li>';
+						}
 					}
 					?>
-					<!-- <li><a href="#!"><i class="fab fa-facebook-f"></i></a></li>
-					<li><a href="#!"><i class="fab fa-twitter"></i></a></li>
-					<li><a href="#!"><i class="fab fa-instagram"></i></a></li>
-					<li><a href="#!"><i class="fab fa-linkedin-in"></i></a></li> -->
+
 				</ul>
 			</div>
 		</div>

@@ -6,6 +6,8 @@
  */
 
 $widget = get_field( 'footer_widget_1', 'option' );
+$icons  = $widget['footer_social_icons'];
+$links  = get_social_links();
 
 if ( ! $widget ) {
 	return;
@@ -28,19 +30,20 @@ if ( ! $widget ) {
 
 	<ul class="social-icon-style1 mb-0 d-inline-block list-unstyled">
 		<?php
-		if ( $widget['facebook_url'] ) {
-			echo '<li class="d-inline-block me-2"><a href="' . esc_url( $widget['facebook_url'] ) . '"><i class="fab fa-facebook-f"></i></a></li>';
-		}
-		if ( $widget['twitter_url'] ) {
-			echo '<li class="d-inline-block me-2"><a href="' . esc_url( $widget['twitter_url'] ) . '"><i class="fab fa-twitter"></i></a></li>';
-		}
-		if ( $widget['youtube_url'] ) {
-			echo '<li class="d-inline-block me-2"><a href="' . esc_url( $widget['youtube_url'] ) . '"><i class="fab fa-youtube"></i></a></li>';
-		}
-		if ( $widget['linkedin_url'] ) {
-			echo '<li class="d-inline-block"><a href="' . esc_url( $widget['linkedin_url'] ) . '"><i class="fab fa-linkedin-in"></i></a></li>';
+		foreach ( $icons as $icon ) {
+			if ( 'facebook' === $icon && $links['facebook'] ) {
+				echo '<li class="d-inline-block me-2"><a href="' . esc_url( $links['facebook'] ) . '"><i class="fab fa-facebook-f"></i></a></li>';
+			}
+			if ( 'twitter' === $icon && $links['twitter'] ) {
+				echo '<li class="d-inline-block me-2"><a href="' . esc_url( $links['twitter'] ) . '"><i class="fab fa-twitter"></i></a></li>';
+			}
+			if ( 'youtube' === $icon && $links['youtube'] ) {
+				echo '<li class="d-inline-block me-2"><a href="' . esc_url( $links['youtube'] ) . '"><i class="fab fa-youtube"></i></a></li>';
+			}
+			if ( 'linkedin' === $icon && $links['linkedin'] ) {
+				echo '<li class="d-inline-block me-2"><a href="' . esc_url( $links['linkedin'] ) . '"><i class="fab fa-linkedin-in"></i></a></li>';
+			}
 		}
 		?>
-
 	</ul>
 </div>
